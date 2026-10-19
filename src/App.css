@@ -2300,3 +2300,496 @@ color: #d9e8ef;
 .menu-toggle.active span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+/* ================================
+   ADMIN BOOKINGS DASHBOARD
+================================ */
+
+.admin-bookings {
+  padding: 80px 7%;
+  background: #f5f7fa;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.admin-label {
+  color: #0b63ce;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.admin-header h1 {
+  font-size: 38px;
+  margin: 0 0 10px;
+  color: #172033;
+}
+
+.admin-header p {
+  color: #667085;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.refresh-btn {
+  border: none;
+  background: #0b63ce;
+  color: white;
+  padding: 13px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.refresh-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* DASHBOARD STATISTICS */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eef5ff;
+  border-radius: 10px;
+  font-size: 23px;
+}
+
+.stat-card p {
+  margin: 0 0 5px;
+  color: #667085;
+  font-size: 14px;
+}
+
+.stat-card h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #172033;
+}
+
+/* BOOKING CARDS */
+
+.bookings-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.booking-card {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.booking-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.booking-card-header h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  color: #172033;
+}
+
+.booking-card-header span {
+  color: #0b63ce;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.booking-status {
+  background: #fff4cc;
+  color: #8a6500 !important;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px !important;
+  white-space: nowrap;
+}
+
+.booking-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.booking-details strong {
+  display: block;
+  font-size: 12px;
+  color: #667085;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.booking-details p {
+  margin: 0;
+  color: #172033;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.loading-message,
+.empty-message {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  color: #667085;
+}
+
+
+/* ================================
+   ADMIN MOBILE RESPONSIVENESS
+================================ */
+
+@media (max-width: 1000px) {
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bookings-container {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .admin-bookings {
+    padding: 60px 5%;
+  }
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-header h1 {
+    font-size: 30px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-details {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-card-header {
+    flex-direction: column;
+  }
+
+}
+/* ================================
+   BOOKING ACTION BUTTONS
+================================ */
+
+.booking-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #eaecf0;
+}
+
+.booking-actions button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.confirm-btn {
+  background: #e7f6ec;
+  color: #18763c;
+}
+
+.confirm-btn:hover {
+  background: #18763c;
+  color: white;
+}
+
+.complete-btn {
+  background: #e8f0ff;
+  color: #0b63ce;
+}
+
+.complete-btn:hover {
+  background: #0b63ce;
+  color: white;
+}
+
+.delete-btn {
+  background: #ffe8e8;
+  color: #c62828;
+}
+/* =========================
+   PASSWORD SHOW / HIDE
+========================= */
+
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-container input {
+  width: 100%;
+  height: 48px;
+  padding: 0 45px 0 14px;
+  border: 1px solid #d7e1e7;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+
+  width: 25px !important;
+  height: 25px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: none;
+  background: transparent;
+
+  font-size: 16px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+.delete-btn:hover {
+  background: #c62828;
+  color: white;
+}
+/* =========================
+   ADMIN LOGIN PAGE
+========================= */
+
+.admin-login {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f7fa;
+  padding: 30px 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.login-logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0b63ce;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.admin-label {
+  text-align: center;
+  color: #0b63ce;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.login-card h1 {
+  text-align: center;
+  font-size: 30px;
+  margin: 0 0 10px;
+  color: #17202a;
+}
+
+.login-description {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.login-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.login-field input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d7e1e7;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  color: #222;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.login-field input:focus {
+  border-color: #0b63ce;
+  box-shadow: 0 0 0 3px rgba(11, 99, 206, 0.1);
+}
+
+.emergency-badge {
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 8px;
+  padding: 6px 10px;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+
+/* PASSWORD FIELD */
+
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-container input {
+  width: 100%;
+  height: 48px;
+  padding: 0 45px 0 14px;
+  border: 1px solid #d7e1e7;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.password-input-container input:focus {
+  border-color: #0b63ce;
+  box-shadow: 0 0 0 3px rgba(11, 99, 206, 0.1);
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+
+  width: 25px !important;
+  height: 25px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: none;
+  background: transparent;
+
+  font-size: 16px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+/* ERROR MESSAGE */
+
+.login-error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+/* LOGIN BUTTON */
+
+.login-btn {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 6px;
+  background: #0b63ce;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #084fa5;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .admin-login {
+    padding: 20px 15px;
+  }
+
+  .login-card {
+    padding: 30px 22px;
+  }
+
+  .login-card h1 {
+    font-size: 26px;
+  }
+}

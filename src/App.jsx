@@ -1,7 +1,11 @@
 import './App.css'
 import { useState } from "react";
+import AdminLogin from "./AdminLogin";
+import AdminBookings from "./AdminBookings";
 import logo from './assets/logopn.png'
 function App() {
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [booking, setBooking] = useState({
   fullName: "",
   phone: "",
@@ -21,30 +25,62 @@ const handleBookingChange = (e) => {
     [name]: value
   });
 };
-const handleBookingSubmit = (e) => {
+const handleBookingSubmit = async (e) => {
   e.preventDefault();
 
-  localStorage.setItem(
-    "plumbingBooking",
-    JSON.stringify(booking)
-  );
+  try {
+    const response = await fetch("http://localhost:5000/api/bookings",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(booking)
+    });
 
-  alert("Your plumbing request has been submitted successfully!");
+    const data = await response.json();
 
-  setBooking({
-    fullName: "",
-    phone: "",
-    email: "",
-    service: "",
-    address: "",
-    problem: "",
-    date: "",
-    time: "",
-    emergency: "No"
-  });
+    if (!response.ok) {
+      alert(data.message);
+      return;
+    }
+
+    console.log("Booking response:", data);
+
+    alert("Your plumbing request has been submitted successfully!");
+
+    setBooking({
+      fullName: "",
+      phone: "",
+      email: "",
+      service: "",
+      address: "",
+      problem: "",
+      date: "",
+      time: "",
+      emergency: "No"
+    });
+
+  } catch (error) {
+    console.error("Booking error:", error);
+
+    alert(
+      "Unable to submit your booking. Please make sure the backend server is running."
+    );
+  }
 };
-  const [menuOpen, setMenuOpen] = useState(false);
+const [menuOpen, setMenuOpen] = useState(false);
+
+if (showAdminLogin && !isAdminLoggedIn) {
   return (
+    <AdminLogin
+      onLogin={() => setIsAdminLoggedIn(true)}
+    />
+  );
+}
+if (isAdminLoggedIn) {
+  return <AdminBookings />;
+}
+return (
     <>
  <header>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
@@ -89,14 +125,24 @@ const handleBookingSubmit = (e) => {
       Contact
     </a>
    </li>
-
+    <li>
+  <button
+    className="admin-login-link"
+    onClick={() => {
+      setShowAdminLogin(true);
+      setMenuOpen(false);
+    }}
+  >
+    Admin
+  </button>
+</li>
    <li>
-    <a href="#contact" className="mobile-book-button"
+    <a href="#booking" className="mobile-book-button"
     onClick={() => setMenuOpen(false)} > Book a Plumber </a>
-  </li>
- </ul>
-  </nav>
-</header>
+   </li>
+  </ul>
+   </nav>
+ </header>
 
       <main>
       <section className="hero-section" id="home">
@@ -324,6 +370,7 @@ const handleBookingSubmit = (e) => {
   </div>
 
 </section>
+
   <section className="plumbing-guide-section" id="guide">
 
   <div className="guide-heading">
@@ -1240,50 +1287,29 @@ const handleBookingSubmit = (e) => {
 
       <div className="emergency-buttons">
 
-        <a
-          href="tel:+2347037465079"
-          className="emergency-button"
-        >
-          📞 Call Now
-        </a>
+      <a href="tel:+2347037465079"className="emergency-button">
+     📞 Call Now</a>
 
-        <a
-          href="#contact"
-          className="emergency-outline-button"
-        >
-          Request a Plumber
-        </a>
+     <a href="#booking"className="emergency-outline-button">
+      Request a Plumber</a>
 
-      </div>
+     </div>
 
     </div>
-
 
     <div className="emergency-card">
 
-      <div className="emergency-icon">
-        🚨
-      </div>
+    <div className="emergency-icon"> 🚨 </div>
 
-      <h3>Need Help Now?</h3>
+   <h3>Need Help Now?</h3>
 
-      <p>
-        Our team is available to respond to urgent
-        plumbing problems.
-      </p>
+   <p> Our team is available to respond to urgent plumbing problems. </p>
 
-      <a href="tel:+2347037465079">
-        +234 703 746 5079
-      </a>
-
-      <span>
-        Emergency Plumbing Support
-      </span>
-
-    </div>
+   <a href="tel:+2347037465079"> +234 703 746 5079</a>
+   <span> Emergency Plumbing Support</span>
+   </div>
 
   </div>
-
 </section>
 {/* BOOK A PLUMBER */}
 <section className="booking-section" id="booking">
@@ -1587,7 +1613,7 @@ const handleBookingSubmit = (e) => {
 
    </div>
  </footer>
-    </>
+</>
   )
 }
 
